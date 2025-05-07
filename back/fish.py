@@ -1,42 +1,24 @@
-import uuid
-import random
 
 
 class Fish:
 
-    #TODO to be replaced by repro_fish from the ini file
-    ini_repro_fish = 6
-
-
-    def __init__(self, pos_x: int, pos_y: int, repro_time: int):
+    def __init__(self, pos_x: int, pos_y: int):
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.repro_time = repro_time
-        self.id = uuid.uuid4()
-
-    def move(self, list_a_move: list):
-        random.choice(list_a_move)
-
-    def repro(self):
-        pass
-
-    #TODO to remove: can_move will be decided by the gris
-    def can_move(self):
-        return True
+        self.repro_time = 0
 
 
     def can_repro(self, ini_repro_fish):
-        return True if self.repro_time >= ini_repro_fish and self.can_move() else False
+        return True if self.repro_time >= ini_repro_fish else False
 
-    
     def __str__(self):
         return f'the fish {self.pos_x}, {self.pos_y}, {self.repro_time}'
-    
 
 
 
+#TEST
+ini_repro_fish = 6
 
-
-    
-fish1 = Fish(10,10,15)
-print(fish1.can_repro(5))
+fish1 = Fish(10,10)
+fish1.repro_time = 4
+print(fish1.can_repro(ini_repro_fish))
