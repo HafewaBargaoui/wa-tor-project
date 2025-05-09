@@ -17,7 +17,7 @@ class Shark(Fish):
         return True if self.energy <= 0 else False
     
     def __str__(self):
-        return f'shark {self.pos_x}, {self.pos_y}, {self.repro_time}, {self.energy}'
+        return f'shark {self.pos_y}, {self.pos_x}, {self.repro_time}, {self.energy}'
 
 
 
