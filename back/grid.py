@@ -158,13 +158,48 @@ class Grid:
         return (action, list_prio1) if list_prio1 else (action, list_moves)
 
 
-    def move():
+    def move(self, animal):
+        my_moves = self.get_moves(animal)
+        if not my_moves[1]:
+            print("can't move")
+            return False
+        direction = random.choice(my_moves[1])
+        print(direction)
+        old_animal = self.ocean[animal.pos_y][animal.pos_x]
+        self.ocean[animal.pos_y][animal.pos_x] = 'w'
+        if direction == "r":
+            if animal.pos_x + 1 >= self.width:
+                animal.pos_x= 0
+            else:
+                animal.pos_x = animal.pos_x + 1
+
+        if direction == "l":
+            if animal.pos_x - 1 < 0:
+                animal.pos_x= self.width -1
+            else:
+                animal.pos_x = animal.pos_x -1 
+        if direction == "u":
+            if animal.pos_y - 1 < 0:
+                animal.pos_y= self.height-1
+            else:
+                animal.pos_y = animal.pos_y - 1
+        if direction == "d":
+            if animal.pos_y + 1 >= self.height:
+                animal.pos_y= 0
+            else:
+                animal.pos_y = animal.pos_y + 1
+        self.ocean[animal.pos_y][animal.pos_x] = old_animal
+        
+        
+   
+
+
+
+    def reproduce(self):
+        #reproduce
         pass
 
-    def reproduce():
-        pass
-
-    def eat():
+    def eat(self):
         pass
 
 #TEST
@@ -180,11 +215,12 @@ my_moves = my_grid.get_moves(animal)
 print(f'moves: {my_moves}')
 
 if my_moves[0] == "eat":
-    print('Maanger')
+    print('Manger')
 else:
     print('pas faim')
+print(my_grid.ocean)
+my_grid.move(animal)
 
 my_grid.add_next_cycle_animals(animal)
 print(my_grid.ocean)
-
 
