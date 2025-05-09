@@ -42,8 +42,15 @@ class Grid:
         print(f"{self.list_population[0].pos_x}\n{self.list_population[0].pos_y}") 
         print(f"{self.list_population[1].pos_x}\n{self.list_population[1].pos_y}") 
         print(len(self.list_population))
+    
+    def get_random_animal(self):
+        random_int = random.randint(0,len(self.list_population)-1)
+        selected_animal = self.list_population.pop(random_int)
+        return selected_animal
 
 
 #TEST
 my_grid= Grid()
 my_grid.populate_grid()
+animal = my_grid.get_random_animal()
+print(animal)
