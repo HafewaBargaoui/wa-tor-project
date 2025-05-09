@@ -86,7 +86,6 @@ class Grid:
     def get_moves(self, animal):
         list_moves = list()
         list_prio1 = list()
-        list_prio2 = list()
 
         #TODO can be upgraded with modulo
         # pos = -1 -> modulo -1 = 9
@@ -105,9 +104,6 @@ class Grid:
             if type(animal) is Shark:
                 if content == "f":
                     list_prio1.append("r")
-                else:
-                    list_prio2.append("r")
-
 
         # Checking if left move is the grid
         if animal.pos_x - 1 < 0:
@@ -122,8 +118,6 @@ class Grid:
             if type(animal) is Shark:
                 if content == "f":
                     list_prio1.append("l")
-                else:
-                    list_prio2.append("l")
 
         # Checking if down move is the grid
         if animal.pos_y + 1 >= self.height:
@@ -138,9 +132,6 @@ class Grid:
             if type(animal) is Shark:
                 if content == "f":
                     list_prio1.append("d")
-                else:
-                    list_prio2.append("d")
-
 
 
         # Checking if up move is the grid
@@ -156,12 +147,16 @@ class Grid:
             if type(animal) is Shark:
                 if content == "f":
                     list_prio1.append("u")
-                else:
-                    list_prio2.append("u")
 
-        print(list_moves)
-        print(list_prio1)
-        print(list_prio2)
+        # print(list_moves)
+        # print(list_prio1)
+        if list_prio1:
+            action = "eat"
+        else:
+            action = "move"
+        
+        return (action, list_prio1) if list_prio1 else (action, list_moves)
+
 
     def move():
         pass
@@ -179,7 +174,15 @@ my_grid.populate_grid()
 animal = my_grid.get_random_animal()
 print(animal)
 
-my_grid.get_moves(animal)
+my_moves = my_grid.get_moves(animal)
+
+
+print(f'moves: {my_moves}')
+
+if my_moves[0] == "eat":
+    print('Maanger')
+else:
+    print('pas faim')
 
 my_grid.add_next_cycle_animals(animal)
 print(my_grid.ocean)
