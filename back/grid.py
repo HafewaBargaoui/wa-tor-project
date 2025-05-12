@@ -53,16 +53,6 @@ class Grid:
         self.list_next_cycle_population.append(animal)
 
 
-    def select_animal_action(self, animal):
-        if type(animal) is Shark:
-#            eat, reproduce, move
-            pass
-
-        elif type(animal) is Fish:
-            print('fish')
-        else:
-            print('ne se prononce pas')
-
 # x+1 -> vers la droite
 # x-1 -> vers la gauche
 # y+1 -> vers le bas
@@ -193,23 +183,23 @@ class Grid:
         self.ocean[animal.pos_y][animal.pos_x] = old_animal
 
         if my_moves[0] == "eat" :
-            print('Action mange')
+            # print('Action mange')
             self.eat(animal)
         self.reproduce(animal, old_pos_x, old_pos_y)
 
 
     def eat(self, animal):
         for indice_animal in range(0,len(self.list_population)):
-            print(f"Animal dans for eat 1ere list {animal}")
+            # print(f"Animal dans for eat 1ere list {animal}")
             if animal.pos_x == self.list_population[indice_animal].pos_x and animal.pos_y == self.list_population[indice_animal].pos_y:
-                print(f"fish a manger {self.list_population[indice_animal]}")
+                # print(f"fish a manger {self.list_population[indice_animal]}")
                 del self.list_population[indice_animal]
                 break
         else:
             for indice_animal in range(0,len(self.list_next_cycle_population)):
-                print(f"Animal dans for eat 2eme list {animal}")
+                # print(f"Animal dans for eat 2eme list {animal}")
                 if animal.pos_x == self.list_next_cycle_population[indice_animal].pos_x and animal.pos_y == self.list_next_cycle_population[indice_animal].pos_y:
-                    print(f"fish manger 2 eme list{self.list_next_cycle_population[indice_animal]}")
+                    # print(f"fish manger 2 eme list{self.list_next_cycle_population[indice_animal]}")
                     del self.list_next_cycle_population[indice_animal]
                     break
 
@@ -244,33 +234,57 @@ class Grid:
             print(row)
 
 
+
     def finish_animal_turn(self, animal):
         if type(animal) is Shark:
-            print(f' Energie du requin avant réduction: {animal.energy}')
+            # print(f' Energie du requin avant réduction: {animal.energy}')
             animal.energy -= 1
             if not animal.can_starv():
-                print(f'Shark does not starve {animal.energy}')
+                # print(f'Shark does not starve {animal.energy}')
                 # retirer le "s" de la grille affichage
                 self.add_next_cycle_animals(animal)
             else:
-                print(f'shark is dead {animal.energy}')
+                # print(f'shark is dead {animal.energy}')
                 self.ocean[animal.pos_y][animal.pos_x] = "💧"
         if type(animal) is Fish:
             self.add_next_cycle_animals(animal)
     
     def cycle(self):
-        self.print_grid()
+        # self.print_grid()
         while self.list_population:
             animal = self.get_random_animal()
-            print(animal)
+            # print(animal)
             self.move(animal)
             self.finish_animal_turn(animal)
-            print(f"liste next cycle population boucle while {self.list_next_cycle_population}")
+            # print(f"liste next cycle population boucle while {self.list_next_cycle_population}")
+        
         self.print_grid()
 
+        self.list_population = self.list_next_cycle_population
+        self.list_next_cycle_population = []
+
+        # print(f"liste population: {self.list_population}")
+        # print(f"liste next cycle population: {self.list_next_cycle_population}")
 
 
+    def print_population(self):
+        nb_fishes = 0
+        nb_sharks = 0
 
+        for animal in self.list_population:
+            if type(animal) is Shark:
+                nb_sharks += 1
+            else:
+                nb_fishes += 1
+
+        print("")
+        print(f"🦈 count: {nb_sharks}")
+        print(f"🐠 count: {nb_fishes}")
+
+        if nb_fishes == 0 or nb_sharks == 0:
+            return True
+                         
+                         
 # my_grid= Grid()
 # my_grid.populate_grid()
 # animal = my_grid.get_random_animal()
