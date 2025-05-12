@@ -166,6 +166,8 @@ class Grid:
         direction = random.choice(my_moves[1])
         print(direction)
         old_animal = self.ocean[animal.pos_y][animal.pos_x]
+        old_pos_x=animal.pos_x
+        old_pos_y= animal.pos_y
         self.ocean[animal.pos_y][animal.pos_x] = 'w'
         if direction == "r":
             if animal.pos_x + 1 >= self.width:
@@ -192,6 +194,7 @@ class Grid:
 
         if my_moves[0] == "eat" :
             self.eat(animal)
+        self.reproduce(animal, old_pos_x, old_pos_y)
 
 
     def eat(self, animal):
@@ -212,9 +215,25 @@ class Grid:
         print(f"animal manger {animal}")
 
 
-    def reproduce(self):
+    def reproduce(self, animal, old_pos_x, old_pos_y):
         #reproduce
-        pass
+        if animal.can_repro():
+            if type(animal) is Shark:
+                self.ocean[old_pos_y][old_pos_x] = "s"
+                new_shark = Shark(old_pos_x,old_pos_y)
+                self.list_next_cycle_population.append(new_shark)
+            else:
+                self.ocean[old_pos_y][old_pos_x] = "f"
+                new_fish = Fish(old_pos_x,old_pos_y)
+                self.list_next_cycle_population.append(new_fish)
+            animal.repro_time = 0
+        else:
+            animal.repro_time +=1
+
+
+
+
+
 
 
 #TEST
@@ -239,5 +258,5 @@ my_grid.move(animal)
 
 my_grid.add_next_cycle_animals(animal)
 print(my_grid.ocean)
-
+print(my_grid.list_next_cycle_population)
 
