@@ -9,8 +9,8 @@ class Shark(Fish):
 
     def eat(self):
         self.energy += cs.INI_SHARK_EATING_REGEN
-        if self.energy >cs.INI_SHARK_STARTING_ENERGY:
-            self.energy = cs.INI_SHARK_STARTING_ENERGY
+#        if self.energy >cs.INI_SHARK_STARTING_ENERGY:
+#            self.energy = cs.INI_SHARK_STARTING_ENERGY
 
     def can_repro(self):
         return True if self.repro_time >= cs.INI_SHARK_TIME_TO_REPRODUCE else False

@@ -76,10 +76,10 @@ class Grid:
 
     def can_move(self, x, y):
         if self.ocean[y][x] == "💧" or (type(animal) is Shark and self.ocean[y][x] == "🐠") :
-            print(f'can move: {self.ocean[y][x]}')
+#            print(f'can move: {self.ocean[y][x]}')
             return True, self.ocean[y][x]
         else:
-            print(f'cannot move: {self.ocean[y][x]}')
+#            print(f'cannot move: {self.ocean[y][x]}')
             return False, self.ocean[y][x]
 
 
@@ -161,14 +161,14 @@ class Grid:
     def move(self, animal):
         my_moves = self.get_moves(animal)
         if not my_moves[1]:
-            print("can't move")
+#            print("can't move")
             return False
         direction = random.choice(my_moves[1])
-        print(direction)
+#        print(direction)
         old_animal = self.ocean[animal.pos_y][animal.pos_x]
         old_pos_x=animal.pos_x
         old_pos_y= animal.pos_y
-        self.ocean[animal.pos_y][animal.pos_x] = 'w'
+        self.ocean[animal.pos_y][animal.pos_x] = "💧"
         if direction == "r":
             if animal.pos_x + 1 >= self.width:
                 animal.pos_x= 0
@@ -193,6 +193,7 @@ class Grid:
         self.ocean[animal.pos_y][animal.pos_x] = old_animal
 
         if my_moves[0] == "eat" :
+            print('Action mange')
             self.eat(animal)
         self.reproduce(animal, old_pos_x, old_pos_y)
 
@@ -202,17 +203,19 @@ class Grid:
             if animal.pos_x == self.list_population[indice_animal].pos_x and animal.pos_y == self.list_population[indice_animal].pos_y:
                 print(f"fish manger {self.list_population[indice_animal]}")
                 del self.list_population[indice_animal]
-                print(f"liste a jour :{self.list_population} ")
                 break
         else : 
             for indice_animal in range(0,len(self.list_next_cycle_population)-1):
                 if animal.pos_x == self.list_next_cycle_population[indice_animal].pos_x and animal.pos_y == self.list_next_cycle_population[indice_animal].pos_y:
                     print(f"fish manger 2 eme list{self.list_next_cycle_population[indice_animal]}")
                     del self.list_next_cycle_population[indice_animal]
-                    print(f"liste next cycle a jour :{self.list_next_cycle_population} ")
                     break
+
+        print(f"liste a jour :{self.list_population} ")
+        print(f"liste next cycle a jour :{self.list_next_cycle_population} ")
+        print(f"animal energie avant manger {animal.energy}")
         animal.eat()
-        print(f"animal manger {animal}")
+        print(f"animal energie apres manger {animal.energy}")
 
 
     def reproduce(self, animal, old_pos_x, old_pos_y):
@@ -229,16 +232,29 @@ class Grid:
             animal.repro_time = 0
         else:
             animal.repro_time +=1
+
+
     def print_grid(self):
         for i in range (cs.INI_GRID_HEIGHT): 
             row = "  "
             for j in range(cs.INI_GRID_WIDTH):
-                row += my_grid.ocean[i][j] + "  "
+                row += self.ocean[i][j] + "  "
             print(row)
 
 
-
-
+    def finish_animal_turn(self, animal):
+        if type(animal) is Shark:
+            print(f' Energie du requin avant réduction: {animal.energy}')
+            animal.energy -= 1
+            if not animal.can_starv():
+                print(f'Shark does not starve {animal.energy}')
+                # retirer le "s" de la grille affichage
+                self.add_next_cycle_animals(animal)
+            else:
+                print(f'shark is dead {animal.energy}')
+                self.ocean[animal.pos_y][animal.pos_x] = "💧"
+        if type(animal) is Fish:
+            self.add_next_cycle_animals(animal)
 
 
 
@@ -252,7 +268,7 @@ print(animal)
 my_moves = my_grid.get_moves(animal)
 
 
-print(f'moves: {my_moves}')
+# print(f'moves: {my_moves}')
 
 if my_moves[0] == "eat":
     print('Manger')
@@ -261,9 +277,8 @@ else:
 my_grid.print_grid()
 my_grid.move(animal)
 
+my_grid.finish_animal_turn(animal)
 
-my_grid.add_next_cycle_animals(animal)
-my_grid.print_grid()
 print(my_grid.list_next_cycle_population)
 
 my_grid.print_grid()

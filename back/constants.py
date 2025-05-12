@@ -14,7 +14,6 @@ INI_SHARK_STARTING_ENERGY = 10
 INI_SHARK_TIME_TO_REPRODUCE = 5
 INI_SHARK_EATING_REGEN = 3
 
-
 def read_config(fic):
     if not os.path.exists(fic):
         print(f'Ini file {fic_config} does not exist')
