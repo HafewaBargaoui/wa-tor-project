@@ -35,6 +35,7 @@ You are free to use, modify, and distribute this project with proper attribution
 
 ## 📁Project Structure  
   
+```
 wa-tor-project/
 ├── back/
 │   ├── fish.py
@@ -53,6 +54,7 @@ wa-tor-project/
 ├── LICENSE
 ├── README.md
 ├── requirements.txt
+```
   
   
 ## 🖼️ Example Output  
