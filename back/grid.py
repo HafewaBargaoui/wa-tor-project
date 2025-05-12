@@ -13,15 +13,15 @@ class Grid:
         self.height = cs.INI_GRID_HEIGHT
 
     def populate_grid(self):
-        self.ocean=[['w' for _ in range(self.width)] for _ in range(self.height)]
+        self.ocean=[["💧" for _ in range(self.width)] for _ in range(self.height)]
         counter_shark =0
         while counter_shark < cs.INI_SHARK_STARTING_POPULATION :
             x = random.randint(0, self.width-1)
 #            print(x)
             y = random.randint(0, self.height-1)
 #            print(y)
-            if self.ocean[y][x] == "w":
-                self.ocean[y][x] = "s"
+            if self.ocean[y][x] == "💧": 
+                self.ocean[y][x] = "🦈"
                 new_shark = Shark(x, y)
                 self.list_population.append(new_shark)
 #                print(f"pos_x = {new_shark.pos_x}")
@@ -33,8 +33,8 @@ class Grid:
 #            print(x)
             y = random.randint(0, self.height-1)
 #            print(y)
-            if self.ocean[y][x] == "w":
-                self.ocean[y][x] = "f"
+            if self.ocean[y][x] == "💧":
+                self.ocean[y][x] = "🐠"
                 new_fish = Fish(x, y)
                 self.list_population.append(new_fish)
                 counter_fish+=1
@@ -75,7 +75,7 @@ class Grid:
 # pos_x =% 10
 
     def can_move(self, x, y):
-        if self.ocean[y][x] == "w" or (type(animal) is Shark and self.ocean[y][x] == "f") :
+        if self.ocean[y][x] == "💧" or (type(animal) is Shark and self.ocean[y][x] == "🐠") :
             print(f'can move: {self.ocean[y][x]}')
             return True, self.ocean[y][x]
         else:
@@ -102,7 +102,7 @@ class Grid:
         if can_m:
             list_moves.append("r")
             if type(animal) is Shark:
-                if content == "f":
+                if content == "🐠":
                     list_prio1.append("r")
 
         # Checking if left move is the grid
@@ -116,7 +116,7 @@ class Grid:
         if can_m:
             list_moves.append("l")
             if type(animal) is Shark:
-                if content == "f":
+                if content == "🐠":
                     list_prio1.append("l")
 
         # Checking if down move is the grid
@@ -130,7 +130,7 @@ class Grid:
         if can_m:
             list_moves.append("d")
             if type(animal) is Shark:
-                if content == "f":
+                if content == "🐠":
                     list_prio1.append("d")
 
 
@@ -145,7 +145,7 @@ class Grid:
         if can_m:
             list_moves.append("u")
             if type(animal) is Shark:
-                if content == "f":
+                if content == "🐠":
                     list_prio1.append("u")
 
         # print(list_moves)
@@ -219,16 +219,22 @@ class Grid:
         #reproduce
         if animal.can_repro():
             if type(animal) is Shark:
-                self.ocean[old_pos_y][old_pos_x] = "s"
+                self.ocean[old_pos_y][old_pos_x] = "🦈"
                 new_shark = Shark(old_pos_x,old_pos_y)
                 self.list_next_cycle_population.append(new_shark)
             else:
-                self.ocean[old_pos_y][old_pos_x] = "f"
+                self.ocean[old_pos_y][old_pos_x] = "🐠"
                 new_fish = Fish(old_pos_x,old_pos_y)
                 self.list_next_cycle_population.append(new_fish)
             animal.repro_time = 0
         else:
             animal.repro_time +=1
+    def print_grid(self):
+        for i in range (cs.INI_GRID_HEIGHT): 
+            row = "  "
+            for j in range(cs.INI_GRID_WIDTH):
+                row += my_grid.ocean[i][j] + "  "
+            print(row)
 
 
 
@@ -252,11 +258,13 @@ if my_moves[0] == "eat":
     print('Manger')
 else:
     print('pas faim')
-print(my_grid.ocean)
+my_grid.print_grid()
 my_grid.move(animal)
 
 
 my_grid.add_next_cycle_animals(animal)
-print(my_grid.ocean)
+my_grid.print_grid()
 print(my_grid.list_next_cycle_population)
+
+my_grid.print_grid()
 
