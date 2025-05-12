@@ -189,18 +189,33 @@ class Grid:
             else:
                 animal.pos_y = animal.pos_y + 1
         self.ocean[animal.pos_y][animal.pos_x] = old_animal
-        
-        
-   
 
+        if my_moves[0] == "eat" :
+            self.eat(animal)
+
+
+    def eat(self, animal):
+        for indice_animal in range(0,len(self.list_population)-1):
+            if animal.pos_x == self.list_population[indice_animal].pos_x and animal.pos_y == self.list_population[indice_animal].pos_y:
+                print(f"fish manger {self.list_population[indice_animal]}")
+                del self.list_population[indice_animal]
+                print(f"liste a jour :{self.list_population} ")
+                break
+        else : 
+            for indice_animal in range(0,len(self.list_next_cycle_population)-1):
+                if animal.pos_x == self.list_next_cycle_population[indice_animal].pos_x and animal.pos_y == self.list_next_cycle_population[indice_animal].pos_y:
+                    print(f"fish manger 2 eme list{self.list_next_cycle_population[indice_animal]}")
+                    del self.list_next_cycle_population[indice_animal]
+                    print(f"liste next cycle a jour :{self.list_next_cycle_population} ")
+                    break
+        animal.eat()
+        print(f"animal manger {animal}")
 
 
     def reproduce(self):
         #reproduce
         pass
 
-    def eat(self):
-        pass
 
 #TEST
 
@@ -221,6 +236,8 @@ else:
 print(my_grid.ocean)
 my_grid.move(animal)
 
+
 my_grid.add_next_cycle_animals(animal)
 print(my_grid.ocean)
+
 
