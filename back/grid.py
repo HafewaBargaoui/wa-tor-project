@@ -74,7 +74,7 @@ class Grid:
 # pos_x += 1
 # pos_x =% 10
 
-    def can_move(self, x, y):
+    def can_move(self, animal, x, y):
         if self.ocean[y][x] == "💧" or (type(animal) is Shark and self.ocean[y][x] == "🐠") :
 #            print(f'can move: {self.ocean[y][x]}')
             return True, self.ocean[y][x]
@@ -98,7 +98,7 @@ class Grid:
             new_pos_x = animal.pos_x + 1
 
         # test droite
-        can_m, content = self.can_move(new_pos_x, animal.pos_y)
+        can_m, content = self.can_move(animal, new_pos_x, animal.pos_y)
         if can_m:
             list_moves.append("r")
             if type(animal) is Shark:
@@ -112,7 +112,7 @@ class Grid:
             new_pos_x = animal.pos_x - 1
 
         # test gauche
-        can_m, content = self.can_move(new_pos_x, animal.pos_y)
+        can_m, content = self.can_move(animal, new_pos_x, animal.pos_y)
         if can_m:
             list_moves.append("l")
             if type(animal) is Shark:
@@ -126,7 +126,7 @@ class Grid:
             new_pos_y = animal.pos_y + 1
 
         # test bas
-        can_m, content = self.can_move(animal.pos_x, new_pos_y)
+        can_m, content = self.can_move(animal, animal.pos_x, new_pos_y)
         if can_m:
             list_moves.append("d")
             if type(animal) is Shark:
@@ -141,7 +141,7 @@ class Grid:
             new_pos_y = animal.pos_y - 1
         
         # test haut
-        can_m, content = self.can_move(animal.pos_x, new_pos_y)
+        can_m, content = self.can_move(animal, animal.pos_x, new_pos_y)
         if can_m:
             list_moves.append("u")
             if type(animal) is Shark:
@@ -199,13 +199,18 @@ class Grid:
 
 
     def eat(self, animal):
+        print("RENTRE DANS EAT")
+        trouver = 0
         for indice_animal in range(0,len(self.list_population)-1):
+            print(f"Animal dans for eat 1ere list {animal}")
             if animal.pos_x == self.list_population[indice_animal].pos_x and animal.pos_y == self.list_population[indice_animal].pos_y:
                 print(f"fish manger {self.list_population[indice_animal]}")
                 del self.list_population[indice_animal]
+                trouver = 1
                 break
-        else : 
+        if trouver == 0 :
             for indice_animal in range(0,len(self.list_next_cycle_population)-1):
+                print(f"Animal dans for eat 2eme list {animal}")
                 if animal.pos_x == self.list_next_cycle_population[indice_animal].pos_x and animal.pos_y == self.list_next_cycle_population[indice_animal].pos_y:
                     print(f"fish manger 2 eme list{self.list_next_cycle_population[indice_animal]}")
                     del self.list_next_cycle_population[indice_animal]
@@ -255,31 +260,32 @@ class Grid:
                 self.ocean[animal.pos_y][animal.pos_x] = "💧"
         if type(animal) is Fish:
             self.add_next_cycle_animals(animal)
+    
+    def cycle(self):
+        self.print_grid()
+        while self.list_population:
+            animal = self.get_random_animal()
+            print(animal)
+            self.move(animal)
+            self.finish_animal_turn(animal)
+            print(f"liste next cycle population boucle while {self.list_next_cycle_population}")
+        self.print_grid()
 
 
 
-#TEST
 
-my_grid= Grid()
-my_grid.populate_grid()
-animal = my_grid.get_random_animal()
-print(animal)
-
-my_moves = my_grid.get_moves(animal)
-
-
-# print(f'moves: {my_moves}')
-
-if my_moves[0] == "eat":
-    print('Manger')
-else:
-    print('pas faim')
-my_grid.print_grid()
-my_grid.move(animal)
-
-my_grid.finish_animal_turn(animal)
-
-print(my_grid.list_next_cycle_population)
-
-my_grid.print_grid()
-
+# my_grid= Grid()
+# my_grid.populate_grid()
+# animal = my_grid.get_random_animal()
+# print(animal)
+# my_moves = my_grid.get_moves(animal)
+# # print(f'moves: {my_moves}')
+# if my_moves[0] == "eat":
+#     print('Manger')
+# else:
+#     print('pas faim')
+# my_grid.print_grid()
+# my_grid.move(animal)
+# my_grid.finish_animal_turn(animal)
+# print(my_grid.list_next_cycle_population)
+# my_grid.print_grid()
