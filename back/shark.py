@@ -7,8 +7,8 @@ class Shark(Fish):
         super().__init__(pos_x, pos_y)
         self.energy = cs.INI_SHARK_STARTING_ENERGY
 
-    def eat(self, ini_regen: int):
-        self.energy += ini_regen
+    def eat(self):
+        self.energy += cs.INI_SHARK_EATING_REGEN
 
     def can_repro(self):
         return True if self.repro_time >= cs.INI_SHARK_TIME_TO_REPRODUCE else False
