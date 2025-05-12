@@ -199,28 +199,25 @@ class Grid:
 
 
     def eat(self, animal):
-        print("RENTRE DANS EAT")
-        trouver = 0
-        for indice_animal in range(0,len(self.list_population)-1):
+        for indice_animal in range(0,len(self.list_population)):
             print(f"Animal dans for eat 1ere list {animal}")
             if animal.pos_x == self.list_population[indice_animal].pos_x and animal.pos_y == self.list_population[indice_animal].pos_y:
-                print(f"fish manger {self.list_population[indice_animal]}")
+                print(f"fish a manger {self.list_population[indice_animal]}")
                 del self.list_population[indice_animal]
-                trouver = 1
                 break
-        if trouver == 0 :
-            for indice_animal in range(0,len(self.list_next_cycle_population)-1):
+        else:
+            for indice_animal in range(0,len(self.list_next_cycle_population)):
                 print(f"Animal dans for eat 2eme list {animal}")
                 if animal.pos_x == self.list_next_cycle_population[indice_animal].pos_x and animal.pos_y == self.list_next_cycle_population[indice_animal].pos_y:
                     print(f"fish manger 2 eme list{self.list_next_cycle_population[indice_animal]}")
                     del self.list_next_cycle_population[indice_animal]
                     break
 
-        print(f"liste a jour :{self.list_population} ")
-        print(f"liste next cycle a jour :{self.list_next_cycle_population} ")
-        print(f"animal energie avant manger {animal.energy}")
+        # print(f"liste a jour :{self.list_population} ")
+        # print(f"liste next cycle a jour :{self.list_next_cycle_population} ")
+        # print(f"animal energie avant manger {animal.energy}")
         animal.eat()
-        print(f"animal energie apres manger {animal.energy}")
+        # print(f"animal energie apres manger {animal.energy}")
 
 
     def reproduce(self, animal, old_pos_x, old_pos_y):
