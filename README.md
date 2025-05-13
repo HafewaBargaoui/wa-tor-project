@@ -65,9 +65,9 @@ Here’s a glimpse of the simulation in action:
 ![Simulation demo](images/wa-tor.gif)
   
   
-## 🚀Getting Started  
+## 🚀 Getting Started  
   
-### Installation  
+### 📦 Installation  
   
 ```bash  
 git clone https://github.com/HafewaBargaoui/wa-tor-project.git
@@ -106,15 +106,6 @@ Once the dependencies are installed and the configuration is set, you can launch
 ```bash
 python back/main.py 
 ```
-
-## 👥 Team
-
-This project was developed as part of the **Simplon HDF Data Engineering Bootcamp 2025** by a team of 3 apprenants:
-
-🔗 [Sébastien Dewaelle](https://github.com/cebdewaelle)  
-🔗 [Jean-Pierre Elias](https://github.com/seiyakazana)  
-🔗 [Hafawa Bargaoui](https://github.com/HafewaBargaoui)
-
 
 ## 📜 License
 
