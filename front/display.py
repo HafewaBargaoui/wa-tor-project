@@ -50,6 +50,4 @@ def update_display(p_ocean: list, p_screen, p_cell_size: int) -> None:
 # create_display()
 # update_display()
 
-pygame.quit()
-sys.exit()
 
