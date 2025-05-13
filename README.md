@@ -20,11 +20,6 @@ The **Wa-Tor Simulation** is a simplified predator-prey ecosystem model represen
 🔗 [Example of a Wa-Tor simulation online](https://wa-tor.saidone.org/)
 
 
-## 📜 License  
-  
-This project is licensed under the MIT License ©️ 2025.  
-You are free to use, modify, and distribute this project with proper attribution.  
-  
 ## 🛠️ Technologies Used  
   
 -   🐍 Python
