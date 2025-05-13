@@ -40,6 +40,8 @@ wa-tor-project/
 ├── config/
 │   └── config.ini
 │
+├── front/
+│   └── display.py
 ├── images/
 │   └── wa-tor.gif
 │   └── wa-tor.png
