@@ -16,10 +16,10 @@ The **Wa-Tor Simulation** is a simplified predator-prey ecosystem model represen
 - 🐟 **Fish** — peaceful swimmers  
 - 🦈 **Sharks** — hungry hunters  
   
-🔗 [Règles de la simulation Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor#Rules)  
-🔗 [Exemple d'une simulation Wa-Tor en ligne](https://wa-tor.saidone.org/)
+🔗 [Rules of the Wa-Tor simulation](https://en.wikipedia.org/wiki/Wa-Tor#Rules)  
+🔗 [Example of a Wa-Tor simulation online](https://wa-tor.saidone.org/)
 
-  
+
 ## 📜 License  
   
 This project is licensed under the MIT License ©️ 2025.  
@@ -61,7 +61,7 @@ wa-tor-project/
   
 Here’s a glimpse of the simulation in action:  
   
-[ADD IMAGE OR GIF]  
+[(./images/wa-tor.gif)
   
   
 ## 🚀Getting Started  
