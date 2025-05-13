@@ -61,7 +61,8 @@ wa-tor-project/
   
 Here’s a glimpse of the simulation in action:  
   
-[(./images/wa-tor.gif)
+
+![Simulation demo](images/wa-tor.gif)
   
   
 ## 🚀Getting Started  
