@@ -96,6 +96,6 @@ python back/main.py
 
 This project was developed as part of the **Simplon HDF Data Engineering Bootcamp 2025** by a team of 3 apprenants:
 
-- [**Waëlle Cebde**](https://github.com/cebdewaelle)  
-- [**Kazana Seiya**](https://github.com/seiyakazana)
-- [**Hafewa Bargaoui**](https://github.com/HafewaBargaoui)  
+- 🔗 [Sébastien Dewaelle](https://github.com/cebdewaelle)  
+- [**Jean-Pierre Elias*](https://github.com/seiyakazana)
+- [**Hafawa Bargaoui**](https://github.com/HafewaBargaoui)  
