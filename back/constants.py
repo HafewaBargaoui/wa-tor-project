@@ -1,7 +1,7 @@
 from configparser import ConfigParser
 import os
 
-
+# location of the ini file
 fic_config = 'config/config.ini'
 
 # default values, can be overwritten by values from config/config.ini
@@ -14,7 +14,16 @@ INI_SHARK_STARTING_ENERGY = 10
 INI_SHARK_TIME_TO_REPRODUCE = 5
 INI_SHARK_EATING_REGEN = 3
 
-def read_config(fic):
+
+def read_config(fic) -> ConfigParser|bool:
+    """ Function that reads the config.ini file and returns a parser
+
+    Args:
+        fic (str): path to the ini file
+
+    Returns:
+        ConfigParser|bool: parser containing the ini file "constants" | False (file not found)
+    """
     if not os.path.exists(fic):
         print(f'Ini file {fic_config} does not exist')
         return False
@@ -24,9 +33,10 @@ def read_config(fic):
 
     return parser
 
-
+# Getting a parser of the ini file
 ini_parser = read_config( fic_config)
 
+# if the ini file is found we overwrite the "default" constants defined on top with the ones from the file 
 if ini_parser:
     INI_GRID_WIDTH = int(ini_parser.get('grid','width'))
     INI_GRID_HEIGHT = int(ini_parser.get('grid','height'))
