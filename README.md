@@ -29,12 +29,93 @@ You are free to use, modify, and distribute this project with proper attribution
   
 -   🐍 Python
   
-- 🎮 pygame (if GUI)  
-  
--   📈  matplotlib (if visualization)  
+- 🎮 pygame (if GUI)   
 
 ## 📁Project Structure  
   
+```
+wa-tor-project/
+├── back/
+│   ├── fish.py
+│   ├── shark.py
+│   ├── constants.py
+│   ├── grid.py
+│   └── main.py
+│
+├── config/
+│   └── config.ini
+│
+├── images/
+│   └── wa-tor.gif
+│   └── wa-tor.png
+│
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+```
+  
+  
+## 🖼️ Example Output  
+  
+Here’s a glimpse of the simulation in action:  
+  
+
+![Simulation demo](images/wa-tor.gif)
+  
+  
+## 🚀Getting Started  
+  
+### Installation  
+  
+```bash  
+git clone https://github.com/HafewaBargaoui/wa-tor-project.git
+cd wa-tor-project
+pip install -r requirements.txt
+```
+## ⚙️ Configuration
+
+### 🗺️ Grid Dimensions
+- **`width`**, **`height`**  
+  Define the size of the toroidal grid (wrapping edges), representing the ocean.
+
+### 🐟 Fish Settings
+- **`starting_population`**  
+  Number of fish initially placed on the grid.
+- **`time_to_reproduce`**  
+  Number of simulation steps a fish must survive before reproducing.
+
+### 🦈 Shark Settings
+- **`starting_population`**  
+  Number of sharks initially placed on the grid.
+- **`time_to_reproduce`**  
+  Number of simulation steps a shark must survive before reproducing.
+- **`starting_energy`**  
+  Number of steps a shark can survive without eating before starving.
+- **`eating_regen`**  
+  Amount of energy regained each time a shark eats a fish.
+
+
+## 🧪 How to Run
+
+Once the dependencies are installed and the configuration is set, you can launch the simulation with:
+
+```bash
+python back/main.py
+
+## 👥 Team
+
+This project was developed as part of the **Simplon HDF Data Engineering Bootcamp 2025** by a team of 3 apprenants:
+
+## 👥 Team
+
+This project was developed as part of the **Simplon HDF Data Engineering Bootcamp 2025** by a team of 3 apprenants:
+
+🔗 [Sébastien Dewaelle](https://github.com/cebdewaelle)  
+🔗 [Jean-Pierre Elias](https://github.com/seiyakazana)  
+🔗 [Hafawa Bargaoui](https://github.com/HafewaBargaoui)
+
+
 ```
 wa-tor-project/
 ├── back/
@@ -55,7 +136,31 @@ wa-tor-project/
 ├── README.md
 ├── requirements.txt
 ```
-  
+
+
+## 📜 License
+
+This project is licensed under the MIT License ©️ 2025.  
+You are free to use, modify, and distribute this project with proper attribution.
+
+---
+
+## 🖼️ Example Output
+
+Here’s a glimpse of the simulation in action:
+
+![Simulation demo](images/wa-tor.gif)
+
+---
+
+## 🚀 Getting Started
+
+### Installation
+
+```bash
+git clone https://github.com/HafewaBargaoui/wa-tor-project.git
+cd wa-tor-project
+pip install -r requirements.txt
   
 ## 🖼️ Example Output  
   
@@ -91,10 +196,6 @@ Once the dependencies are installed and the configuration is set, you can launch
 
 ```bash
 python back/main.py
-
-## 👥 Team
-
-This project was developed as part of the **Simplon HDF Data Engineering Bootcamp 2025** by a team of 3 apprenants:
 
 ## 👥 Team
 
