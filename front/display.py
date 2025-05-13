@@ -2,53 +2,53 @@ import pygame
 import sys
 
 
-def pydisplay(ocean, p_height, p_width):
-    # Paramètres de la grille
-    # grid = [
-    #     [0, 1, 0, 1],
-    #     [1, 0, 1, 0],
-    #     [0, 1, 0, 1],
-    #     [1, 0, 1, 0]
-    # ]
-
-
+def create_display(p_width, p_height, p_cell_size):
     # Dimensions
-    cell_size = 50
     rows = p_height
     cols = p_width
-    width = cols * cell_size
-    height = rows * cell_size
+    width = cols * p_cell_size
+    height = rows * p_cell_size
 
-    # Couleurs
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
-    GRAY = (200, 200, 200)
-
-    # Initialisation
+    # Initialiazing pygame
     pygame.init()
     screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Grille avec Pygame")
+    pygame.display.set_caption("Wa-tor simulation")
 
-    # Boucle principale
-    running = True
-    while running:
-        screen.fill(WHITE)
+    return screen
 
-        # Affichage de la grille
-        for y in range(rows):
-            for x in range(cols):
-                rect = pygame.Rect(x * cell_size, y * cell_size, cell_size, cell_size)
-                color = BLACK if ocean[y][x] == '🐠' else GRAY
-                pygame.draw.rect(screen, color, rect)
-                pygame.draw.rect(screen, WHITE, rect, 1)  # Bordures
 
-        pygame.display.flip()
+def update_display(p_ocean: list, p_screen, p_cell_size: int) -> None:
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+    # Colors
+    # Water
+    BLUE = (2, 62, 138)
+    # Fish
+    YELLOW = (255, 225, 35)
+    # Shark
+    RED = (255, 24, 0)
 
-# pydisplay()
+
+    # Affichage de la grille
+    for y, line in enumerate(p_ocean):
+        for x, value in enumerate(line):
+            rect = pygame.Rect(x * p_cell_size, y * p_cell_size, p_cell_size, p_cell_size)
+
+            if p_ocean[y][x] == '🐠':
+                color = YELLOW
+            elif p_ocean[y][x] == '🦈':
+                color = RED
+            else:
+                color = BLUE
+            pygame.draw.rect(p_screen, color, rect)
+            # pygame.draw.rect(screen, WHITE, rect, 1)  # Borders
+
+    pygame.display.flip()
+
+
+    # time.sleep(0.1)
+
+# create_display()
+# update_display()
 
 pygame.quit()
 sys.exit()
