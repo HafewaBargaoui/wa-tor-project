@@ -5,7 +5,7 @@ Welcome to one of the most fishy and shark-infested projects from the **Data Eng
 
 Our mission: simulate a marine ecosystem where hungry sharks chase peaceful fish across an infinite toroidal ocean.
 
-Over the course of 9 days, we, a team of 3, tackled this brief by designing and building an object-oriented simulation tool that helps explore predator-prey dynamics.
+Over the course of 9 days, we tackled this brief by designing and building an object-oriented simulation tool that helps explore predator-prey dynamics.
 
 Dive in. The fish won’t save themselves. 🐟🦈
   
@@ -48,7 +48,7 @@ wa-tor-project/
 │   └── config.ini
 │
 ├── images/
-│   └── screenshot.png
+│   └── wa-tor.gif
 │
 ├── .gitignore
 ├── LICENSE
@@ -70,7 +70,32 @@ Here’s a glimpse of the simulation in action:
 ### Installation  
   
 ```bash  
-git clone https://github.com/yourusername/wa-tor-project.git
+git clone https://github.com/HafewaBargaoui/wa-tor-project.git
 cd wa-tor-project
 pip install -r requirements.txt
 ```
+## ⚙️ Configuration
+
+The simulation behavior can be customized via the `config/config.ini` file. You can adjust the following parameters:
+
+- **Grid dimensions** — set the width and height of the toroidal grid.  
+- **Initial number of fish and sharks** — control how populated the ocean is at the start.  
+- **Fish breeding time** — number of simulation steps before a fish reproduces.  
+- **Shark breeding time** — number of steps before a shark reproduces.  
+- **Shark starvation time** — number of steps a shark can survive without eating.  
+- **Simulation speed** — control the refresh rate or delay between simulation steps.
+
+## 🧪 How to Run
+
+Once the dependencies are installed and the configuration is set, you can launch the simulation with:
+
+```bash
+python back/main.py
+
+## 👥 Team
+
+This project was developed as part of the **Simplon HDF Data Engineering Bootcamp 2025** by a team of 3 apprenants:
+
+- [**Waëlle Cebde**](https://github.com/cebdewaelle)  
+- [**Kazana Seiya**](https://github.com/seiyakazana)
+- [**Hafewa Bargaoui**](https://github.com/HafewaBargaoui)  
