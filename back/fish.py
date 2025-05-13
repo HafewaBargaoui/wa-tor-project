@@ -12,12 +12,3 @@ class Fish:
 
     def __str__(self):
         return f'the fish {self.pos_y}, {self.pos_x}, {self.repro_time}'
-
-
-#TEST
-# ini_repro_fish = 6
-
-# fish1 = Fish(10,10)
-# fish1.repro_time = 5
-# print(fish1.can_repro())
-# print(cs.INI_FISH_TIME_TO_REPRODUCE)

@@ -1,6 +1,7 @@
 from grid import Grid
 import constants as cs
 import pygame
+import time
 
 def main():
     # my_grid= Grid()
@@ -47,23 +48,24 @@ def pydisplay(p_height, p_width):
     nb_cycle = 0
 
     # Dimensions
-    cell_size = 50
+    cell_size = 5
     rows = p_height
     cols = p_width
     width = cols * cell_size
     height = rows * cell_size
 
-    # Couleurs
+    # Colors
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
-    GRAY = (200, 200, 200)
+    GREY = (200, 200, 200)
     BLUE = (2, 62, 138)
     YELLOW = (255, 225, 35)
+    RED = (255, 24, 0)
 
     # Initialisation
     pygame.init()
     screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Grille avec Pygame")
+    pygame.display.set_caption("Wa-tor simulation")
 
 
     # Boucle principale
@@ -88,11 +90,11 @@ def pydisplay(p_height, p_width):
                     if my_grid.ocean[y][x] == '🐠':
                         color = YELLOW
                     elif my_grid.ocean[y][x] == '🦈':
-                        color = GRAY
+                        color = RED
                     else:
                         color = BLUE
                     pygame.draw.rect(screen, color, rect)
-                    pygame.draw.rect(screen, WHITE, rect, 1)  # Bordures
+#                    pygame.draw.rect(screen, WHITE, rect, 1)  # Borders
 
             pygame.display.flip()
 
@@ -104,13 +106,7 @@ def pydisplay(p_height, p_width):
             running = my_grid.print_population()
             print(f"Cycle: {cpt}")
             cpt += 1
-
-
-
-
-
-        
-
+#            time.sleep(0.1)
 
 main()
 
