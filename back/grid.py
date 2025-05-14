@@ -345,11 +345,12 @@ class Grid:
         self.list_next_cycle_population = []
 
 
-    def print_population(self) -> bool:
+    def print_population(self) -> tuple[int, int]:
         """ Method to print this cycle's stats
 
         Returns:
-            bool: the simulation can be stopped (no more Fish|Shark alive)
+            int: Number of fish alive at the end of this cycle
+            int: Number of sharks alive at the end of this cycle
         """
         nb_fishes = 0
         nb_sharks = 0
@@ -361,11 +362,8 @@ class Grid:
                 nb_fishes += 1
 
         # Printing stats
-        print("")
-        print(f"🦈 count: {nb_sharks}")
-        print(f"🐠 count: {nb_fishes}")
-
-        # Verifying if the simulation can be stopped
-        if nb_fishes == 0 or nb_sharks == 0:
-            return True
-
+        # print("")
+        # print(f"🦈 count: {nb_sharks}")
+        # print(f"🐠 count: {nb_fishes}")
+     
+        return nb_fishes, nb_sharks

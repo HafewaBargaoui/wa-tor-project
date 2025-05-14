@@ -1,5 +1,6 @@
 import sys
 import pygame
+import stats as st
 import grid as gd
 import constants as cs
 from display import update_display, create_display
@@ -22,35 +23,35 @@ def main():
     cell_size = 5
     screen = create_display(cs.INI_GRID_WIDTH, cs.INI_GRID_HEIGHT, cell_size)
 
+    st.create_plot()
+
     # Main loop
     while True:
+        # Auto mode / one cycle at a time mode
+        if cs.INI_AUTO_PLAY:
+            key_input = "n"
+        else:
+            key_input = input('Press "n" to play th next cycle. \nPress "c" to stop \n')
+
         nb_cycle += 1
-        print(f"Cycle count: {nb_cycle}")
-        my_grid.cycle()
-        update_display(my_grid.ocean, screen, cell_size)
-        return_value = my_grid.print_population()
-        if return_value:
+        if key_input.lower() == "c":
             break
+        if key_input.lower() == "n":
+            print(f"Cycle count: {nb_cycle}")
+            # Call to the Grid full cycle method
+            my_grid.cycle()
+            # Updating the pygame display
+            update_display(my_grid.ocean, screen, cell_size)
+            # Getting the populations
+            nb_fish, nb_sharks = my_grid.print_population()
+            # Updating the plots with this cycle populations
+            st.update_plot(nb_cycle, nb_fish, nb_sharks)
 
-
-    pygame.quit()
-    sys.exit()
-
-        # key_input = input('Press "n" to play th next cycle. \nPress "c" to stop \n')
-        # if key_input.lower() == "c":
-        #     break
-        # if key_input.lower() == "n":
-        #     cpt = 0
-        #     nb_cycle += 1
-        #     print(f"Cycle count: {nb_cycle}")
-        #     return_value = True
-        #     while cpt <= 100000:
-        #         my_grid.cycle()
-        #         return_value = my_grid.print_population()
-        #         print(f"Cycle: {cpt}")
-        #         if return_value:
-        #             break
-        #         cpt += 1
-
+            # Stop the simulation if no sharks / fish are alive
+            if not nb_sharks or not nb_fish:
+                st.close_plot()
+                pygame.quit()
+                sys.exit()
+                break
 
 main()
