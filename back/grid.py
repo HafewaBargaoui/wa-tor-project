@@ -49,7 +49,7 @@ class Grid:
                 new_fish = Fish(x, y)
                 self.list_population.append(new_fish)
                 counter_fish+=1
-
+        random.shuffle(self.list_population)
 
     def get_random_animal(self) -> Fish | Shark:
         """ Method that returns a random Shark or Fish from the list_population
