@@ -1,8 +1,8 @@
-from back.grid import Grid as gd
-import back.constants as cs
 import sys
 import pygame
-from front.display import update_display, create_display
+import grid as gd
+import constants as cs
+from display import update_display, create_display
 
 def main():
     # Creating the Grid
