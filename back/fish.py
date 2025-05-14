@@ -1,4 +1,5 @@
 import constants as cs
+import random
 
 class Fish:
 
@@ -11,7 +12,7 @@ class Fish:
         """
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.repro_time = 0
+        self.repro_time = random.randint(0, cs.INI_FISH_TIME_TO_REPRODUCE)
 
     def can_repro(self) -> bool:
         """ Method that indicates if the fish can reproduce

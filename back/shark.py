@@ -1,5 +1,6 @@
 from fish import Fish
 import constants as cs
+import random
 
 class Shark(Fish):
 
@@ -11,7 +12,8 @@ class Shark(Fish):
             pos_y (int): y position in the grid
         """
         super().__init__(pos_x, pos_y)
-        self.energy = cs.INI_SHARK_STARTING_ENERGY
+        self.repro_time = random.randint(0, cs.INI_SHARK_TIME_TO_REPRODUCE)
+        self.energy = random.randint(0, cs.INI_SHARK_STARTING_ENERGY)
 
     def eat(self) -> None:
         """ Eat method
