@@ -26,6 +26,8 @@ def update_display(p_ocean: list, p_screen, p_cell_size: int) -> None:
     YELLOW = (255, 225, 35)
     # Shark
     RED = (255, 24, 0)
+    # Shark
+    BLACK = (0, 0, 0)
 
 
     # Affichage de la grille
@@ -37,6 +39,8 @@ def update_display(p_ocean: list, p_screen, p_cell_size: int) -> None:
                 color = YELLOW
             elif p_ocean[y][x] == '🦈':
                 color = RED
+            elif p_ocean[y][x] == '🪨':
+                color = BLACK
             else:
                 color = BLUE
             pygame.draw.rect(p_screen, color, rect)

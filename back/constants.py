@@ -13,6 +13,7 @@ INI_SHARK_STARTING_POPULATION = 7
 INI_SHARK_STARTING_ENERGY = 10
 INI_SHARK_TIME_TO_REPRODUCE = 5
 INI_SHARK_EATING_REGEN = 3
+INI_ROCK_STARTING_POPULATION = 3
 
 
 def read_config(fic) -> ConfigParser|bool:
@@ -48,4 +49,6 @@ if ini_parser:
     INI_SHARK_STARTING_ENERGY = int(ini_parser.get('shark','starting_energy'))
     INI_SHARK_TIME_TO_REPRODUCE = int(ini_parser.get('shark','time_to_reproduce'))
     INI_SHARK_EATING_REGEN = int(ini_parser.get('shark','eating_regen'))
+
+    INI_ROCK_STARTING_POPULATION = int(ini_parser.get('rock','starting_population'))
 

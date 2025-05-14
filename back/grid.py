@@ -49,6 +49,16 @@ class Grid:
                 new_fish = Fish(x, y)
                 self.list_population.append(new_fish)
                 counter_fish+=1
+        counter_rock = 0
+        # Adding rock
+        while counter_rock < cs.INI_ROCK_STARTING_POPULATION :
+            x = random.randint(0, self.width-1)
+            y = random.randint(0, self.height-1)
+            # the rock can be placed in a water tile only
+            if self.ocean[y][x] == "💧":
+                # Populating the ocean with rock randomly placed
+                self.ocean[y][x] = "🪨"
+                counter_rock+=1
 
 
     def get_random_animal(self) -> Fish | Shark:
