@@ -4,18 +4,18 @@ from shark import Shark
 from fish import Fish
 
 class Grid:
-    # list containing the animals (Fish + Shark) who still have to play this cycle
-    list_population= list()
-    # list containing the animals (Fish + Shark) who already played this cycle AND are still alive for the next cycle
-    list_next_cycle_population = list()
-    # list containing the visual representation of the Grid
-    ocean = list()
 
     def __init__(self) -> None:
         """ Grid Constructor
         """
         self.width = cs.INI_GRID_WIDTH
         self.height = cs.INI_GRID_HEIGHT
+        # list containing the visual representation of the Grid
+        self.ocean = list()
+        # list containing the animals (Fish + Shark) who still have to play this cycle
+        self.list_population = list()
+        # list containing the animals (Fish + Shark) who already played this cycle AND are still alive for the next cycle
+        self.list_next_cycle_population = list()
 
 
     def populate_grid(self) -> None:
@@ -51,7 +51,7 @@ class Grid:
                 counter_fish+=1
 
 
-    def get_random_animal(self) -> Fish|Shark:
+    def get_random_animal(self) -> Fish | Shark:
         """ Method that returns a random Shark or Fish from the list_population
 
         Returns:
@@ -62,7 +62,7 @@ class Grid:
         return selected_animal
 
 
-    def add_next_cycle_animals(self, animal) -> None:
+    def add_next_cycle_animals(self, animal: Fish|Shark) -> None:
         """ Method to add an animal to the list_next_cycle_population
 
         Args:
@@ -71,7 +71,7 @@ class Grid:
         self.list_next_cycle_population.append(animal)
 
 
-    def can_move(self, animal, x, y) -> bool:
+    def can_move(self, animal: Fish|Shark, x: int, y: int) -> tuple[bool, str]:
         """ Method that indicates if a move is possible
 
         Args:
@@ -88,7 +88,7 @@ class Grid:
             return False, self.ocean[y][x]
 
 
-    def get_moves(self, animal) -> tuple:
+    def get_moves(self, animal: Fish|Shark) -> tuple[str, list]:
         """ Method that returns a tuple with the animal possibilities
 
         Args:
@@ -100,7 +100,7 @@ class Grid:
         # list containing all possible moves
         list_moves = list()
         # list containing priority moves
-        list_prio1 = list()
+        list_priority_moves = list()
 
         # x+1 -> right
         # x-1 -> left
@@ -120,7 +120,7 @@ class Grid:
             list_moves.append("r")
             if type(animal) is Shark:
                 if content == "🐠":
-                    list_prio1.append("r")
+                    list_priority_moves.append("r")
 
         # Checking left move
         if animal.pos_x - 1 < 0:
@@ -134,7 +134,7 @@ class Grid:
             list_moves.append("l")
             if type(animal) is Shark:
                 if content == "🐠":
-                    list_prio1.append("l")
+                    list_priority_moves.append("l")
 
         # Checking down move
         if animal.pos_y + 1 >= self.height:
@@ -148,7 +148,7 @@ class Grid:
             list_moves.append("d")
             if type(animal) is Shark:
                 if content == "🐠":
-                    list_prio1.append("d")
+                    list_priority_moves.append("d")
 
         # Checking up move
         if animal.pos_y - 1 < 0:
@@ -162,18 +162,18 @@ class Grid:
             list_moves.append("u")
             if type(animal) is Shark:
                 if content == "🐠":
-                    list_prio1.append("u")
+                    list_priority_moves.append("u")
 
         # if list_prio1 is not empty, the animal is a shark and the prefered action is "eat"
-        if list_prio1:
+        if list_priority_moves:
             action = "eat"
         else:
             action = "move"
 
-        return (action, list_prio1) if list_prio1 else (action, list_moves)
+        return (action, list_priority_moves) if list_priority_moves else (action, list_moves)
 
 
-    def move(self, animal) -> bool|None:
+    def move(self, animal: Fish|Shark) -> bool|None:
         """ Method that chooses a move from prefered available moves and applies it
 
         Args:
@@ -239,7 +239,7 @@ class Grid:
         self.reproduce(animal, old_pos_x, old_pos_y)
 
 
-    def eat(self, animal) -> None:
+    def eat(self, animal: Fish|Shark) -> None:
         """ Method that manages animal eating and animal eaten (only sharks eat)
 
         Args:
@@ -262,7 +262,7 @@ class Grid:
         animal.eat()
 
 
-    def reproduce(self, animal, old_pos_x, old_pos_y) -> None:
+    def reproduce(self, animal: Fish|Shark, old_pos_x: int, old_pos_y: int) -> None:
         """ Method that manages if the current animal is reproducing this cycle
 
         Args:
@@ -300,7 +300,7 @@ class Grid:
                 row += self.ocean[i][j] + "  "
             print(row)
 
-    def finish_animal_turn(self, animal) -> None:
+    def finish_animal_turn(self, animal: Fish|Shark) -> None:
         """ Method that adds the current playing animal to the next cycle list (if still alive)
 
         Args:
