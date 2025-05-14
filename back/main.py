@@ -5,6 +5,12 @@ import constants as cs
 from display import update_display, create_display
 
 def main():
+    # Verifying if the number of sharks + fishes fits into the grid
+    if cs.INI_GRID_WIDTH * cs.INI_GRID_HEIGHT < cs.INI_FISH_STARTING_POPULATION + cs.INI_SHARK_STARTING_POPULATION\
+        + cs.INI_ROC_STARTING_POPULATION:
+        print(f"The starting population of fishes + sharks would overpopulate the grid")
+        return
+
     # Creating the Grid
     my_grid = gd.Grid()
     # Populating the Grid
