@@ -26,7 +26,7 @@ def update_display(p_ocean: list, p_screen, p_cell_size: int) -> None:
     YELLOW = (255, 225, 35)
     # Shark
     RED = (255, 24, 0)
-    # Shark
+    # Rock
     BLACK = (0, 0, 0)
     # Boat
     WHITE = (255, 255, 255)
