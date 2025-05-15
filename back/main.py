@@ -28,7 +28,7 @@ def main():
     # Main loop
     while True:
         # Auto mode / one cycle at a time mode
-        if cs.INI_AUTO_PLAY.lower() == "true":
+        if cs.INI_GAME_AUTO_PLAY.lower() == "true":
             key_input = "n"
         else:
             key_input = input('Press "n" to play the next cycle. \nPress "c" to stop \n')
@@ -42,6 +42,9 @@ def main():
             my_grid.cycle()
             # Updating the pygame display
             update_display(my_grid.ocean, screen, cell_size)
+            if cs.INI_GAME_SHOW_TERMINAL.lower() == "true":
+                # Displays the grid in the terminal
+                my_grid.print_grid()
             # Getting the populations
             nb_fish, nb_sharks = my_grid.print_population()
             # Updating the plots with this cycle populations

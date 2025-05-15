@@ -16,7 +16,8 @@ INI_SHARK_EATING_REGEN = 3
 INI_ROCK_STARTING_POPULATION = 3
 INI_BOAT_SIZE = 10
 INI_BOAT_FREQUENCY = 25
-INI_AUTO_PLAY = True
+INI_GAME_AUTO_PLAY = "True"
+INI_GAME_SHOW_TERMINAL = "True"
 
 
 def read_config(fic) -> ConfigParser|bool:
@@ -58,4 +59,5 @@ if ini_parser:
     INI_BOAT_SIZE = int(ini_parser.get('boat','size'))
     INI_BOAT_FREQUENCY = int(ini_parser.get('boat','frequency'))
 
-    INI_AUTO_PLAY = str(ini_parser.get('game','auto_play'))
+    INI_GAME_AUTO_PLAY = str(ini_parser.get('game','auto_play'))
+    INI_GAME_SHOW_TERMINAL = str(ini_parser.get('game','show_in_terminal'))
