@@ -66,6 +66,7 @@ Here’s a glimpse of the simulation in action:
 In the visualization, blue pixels represent water, red pixels represent sharks, and yellow pixels represent fish.
 
 ![Simulation demo](images/wa-tor.gif)
+
 This plot shows how the number of sharks and fish changes over time (per simulation cycle). It illustrates predator-prey dynamics, with sharks depending on fish to survive, and population sizes fluctuating accordingly
 
 ![Simulation demo](images/wa-tor_stats.gif)
