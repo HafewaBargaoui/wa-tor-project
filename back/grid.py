@@ -2,6 +2,7 @@ import random
 import constants as cs
 from shark import Shark 
 from fish import Fish
+from boat import Boat
 
 class Grid:
 
@@ -16,6 +17,7 @@ class Grid:
         self.list_population = list()
         # list containing the animals (Fish + Shark) who already played this cycle AND are still alive for the next cycle
         self.list_next_cycle_population = list()
+        self.list_boat = list()
 
 
     def populate_grid(self) -> None:
@@ -52,6 +54,7 @@ class Grid:
         random.shuffle(self.list_population)        
         counter_rock = 0
         # Adding rock
+        self.rock_positions = set()
         while counter_rock < cs.INI_ROCK_STARTING_POPULATION :
             x = random.randint(0, self.width-1)
             y = random.randint(0, self.height-1)
@@ -59,7 +62,9 @@ class Grid:
             if self.ocean[y][x] == "💧":
                 # Populating the ocean with rock randomly placed
                 self.ocean[y][x] = "🪨"
+                self.rock_positions.add((x, y))
                 counter_rock+=1
+
 
 
     def get_random_animal(self) -> Fish | Shark:
@@ -343,6 +348,9 @@ class Grid:
         # Setting up the lists for the next cycle
         self.list_population = self.list_next_cycle_population
         self.list_next_cycle_population = []
+        self.move_boat()
+        if random.random() < 1/cs.INI_BOAT_FREQUENCY:
+            self.add_boat()
 
 
     def print_population(self) -> tuple[int, int]:
@@ -362,6 +370,61 @@ class Grid:
                 nb_fishes += 1
 
         # Printing stats
+        print("")
+        print(f"🦈 count: {nb_sharks}")
+        print(f"🐠 count: {nb_fishes}")
+
+        # Verifying if the simulation can be stopped
+        if nb_fishes == 0 or nb_sharks == 0:
+            return True
+        
+
+    def move_boat(self) -> None:
+        boat_size = cs.INI_BOAT_SIZE
+        new_list_boat = []  # Liste temporaire pour garder les bateaux encore valides
+        # Créer une nouvelle liste pour les bateaux à garder
+
+        for boat in self.list_boat:
+            old_x, old_y = boat.pos_x, boat.pos_y
+
+            # Vérifie si on doit restaurer un rocher
+            if (old_x, old_y) in self.rock_positions:
+                self.ocean[old_y][old_x] = "🪨"
+            else:
+                self.ocean[old_y][old_x] = "💧"
+            
+
+
+            # Avancer le bateau
+            if boat.pos_x + boat_size < self.width:
+                boat.pos_x += boat_size
+                self.ocean[boat.pos_y][boat.pos_x] = "⛴️"
+                new_list_boat.append(boat)
+
+            # Supprime l'animal à la position du bateau s'il y en a un
+            for indice_animal in range(0,len(self.list_population)):
+                if boat.pos_x == self.list_population[indice_animal].pos_x and boat.pos_y == self.list_population[indice_animal].pos_y:
+                    del self.list_population[indice_animal]
+                    break
+
+        self.list_boat = new_list_boat
+
+
+    def add_boat(self) -> None:
+        boat_size = cs.INI_BOAT_SIZE
+        x = 0
+        y = random.randint(0, self.height-1-boat_size)
+        for i in range(0,boat_size):
+            for j in range(0,boat_size):
+                # Populating the ocean with a boat
+                self.ocean[y+i][x+j] = "⛴️"
+                new_boat = Boat(x+j, y+i)
+                for indice_animal in range(0,len(self.list_population)):
+                    if new_boat.pos_x == self.list_population[indice_animal].pos_x and new_boat.pos_y == self.list_population[indice_animal].pos_y:
+                        del self.list_population[indice_animal]
+                        break
+                self.list_boat.append(new_boat)
+    
         # print("")
         # print(f"🦈 count: {nb_sharks}")
         # print(f"🐠 count: {nb_fishes}")
