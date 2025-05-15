@@ -53,4 +53,4 @@ if ini_parser:
 
     INI_ROCK_STARTING_POPULATION = int(ini_parser.get('rock','starting_population'))
 
-    # INI_AUTO_PLAY = bool(ini_parser.get('game','auto_play'))
+    INI_AUTO_PLAY = str(ini_parser.get('game','auto_play'))

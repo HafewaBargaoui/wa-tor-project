@@ -27,9 +27,8 @@ def main():
 
     # Main loop
     while True:
-        print(cs.INI_AUTO_PLAY)
         # Auto mode / one cycle at a time mode
-        if cs.INI_AUTO_PLAY:
+        if cs.INI_AUTO_PLAY == "True":
             key_input = "n"
         else:
             key_input = input('Press "n" to play th next cycle. \nPress "c" to stop \n')
