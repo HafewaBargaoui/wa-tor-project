@@ -33,6 +33,7 @@ The **Wa-Tor Simulation** is a simplified predator-prey ecosystem model represen
 ```
 wa-tor-project/
 ├── back/
+│   ├── boat.py
 │   ├── constants.py
 │   ├── display.py
 │   ├── fish.py
@@ -62,10 +63,14 @@ wa-tor-project/
   
 Here’s a glimpse of the simulation in action:  
   
+In the visualization, blue pixels represent water, red pixels represent sharks, and yellow pixels represent fish.
 
 ![Simulation demo](images/wa-tor.gif)
+This plot shows how the number of sharks and fish changes over time (per simulation cycle). It illustrates predator-prey dynamics, with sharks depending on fish to survive, and population sizes fluctuating accordingly
 
 ![Simulation demo](images/wa-tor_stats.gif)
+
+In this visualization: blue pixels represent water, yellow pixels are fish, red pixels are sharks, black pixels are rocks, and white pixels represent the fishing trawler, which moves across the grid and removes any fish or sharks it touches.
 
 ![Simulation demo](images/wa-tor_fishing_trawler.gif)
   
@@ -102,7 +107,7 @@ The simulation behavior can be customized via the `config/config.ini` file. You 
 - **`starting_energy`**  
   Number of steps a shark can survive without eating before starving.
 - **`eating_regen`**  
-  Amount of energy regained each time a shark eats a fish.
+  Amount of energy regained each time a shark eats a fish. 
 
 ### 🪨 Rock Settings
 - **`starting_population`**  
