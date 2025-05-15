@@ -24,25 +24,28 @@ The **Wa-Tor Simulation** is a simplified predator-prey ecosystem model represen
   
 -   🐍 Python
   
-- 🎮 pygame (if GUI)   
+-   🎮 pygame  
+
+-   📊 matplotlib 
 
 ## 📁Project Structure  
   
 ```
 wa-tor-project/
 ├── back/
-│   ├── fish.py
-│   ├── shark.py
 │   ├── constants.py
+│   ├── display.py
+│   ├── fish.py
 │   ├── grid.py
-│   └── main.py
+│   ├──  main.py
+│   ├── shark.py
+│   └── stats.py
 │
 ├── config/
 │   └── config.ini
 │
-├── front/
-│   └── display.py
 ├── images/
+│   └── wa-tor_stats.gif
 │   └── wa-tor.gif
 │   └── wa-tor.png
 │
@@ -60,6 +63,8 @@ Here’s a glimpse of the simulation in action:
   
 
 ![Simulation demo](images/wa-tor.gif)
+
+![Simulation demo](images/wa-tor_stats.gif)
   
   
 ## 🚀 Getting Started  
@@ -70,6 +75,7 @@ Here’s a glimpse of the simulation in action:
 git clone https://github.com/HafewaBargaoui/wa-tor-project.git
 cd wa-tor-project
 pip install -r requirements.txt
+sudo apt-get install -y libxcb-cursor-dev
 ```
 ## ⚙️ Configuration
 
@@ -95,6 +101,9 @@ The simulation behavior can be customized via the `config/config.ini` file. You 
 - **`eating_regen`**  
   Amount of energy regained each time a shark eats a fish.
 
+### 🪨 Rock Settings
+- **`starting_population`** 
+  Number of rocks initially placed on the grid.
 
 ## 🧪 How to Run
 
