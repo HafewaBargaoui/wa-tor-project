@@ -2,12 +2,16 @@ import sys
 import pygame
 import grid as gd
 import constants as cs
+import pop_evolution as p_ev
 from display import update_display, create_display
-
+population = [(5, 2), (9, 2), (6, 3), (4, 3)]
 def main():
+    x = dir(p_ev)
+    print(f"x ====={x}")
+    p_ev.plot_population_evolution(population)
     # Verifying if the number of sharks + fishes fits into the grid
     if cs.INI_GRID_WIDTH * cs.INI_GRID_HEIGHT < cs.INI_FISH_STARTING_POPULATION + cs.INI_SHARK_STARTING_POPULATION\
-        + cs.INI_ROC_STARTING_POPULATION:
+        + cs.INI_ROCK_STARTING_POPULATION :
         print(f"The starting population of fishes + sharks would overpopulate the grid")
         return
 
@@ -23,7 +27,7 @@ def main():
     screen = create_display(cs.INI_GRID_WIDTH, cs.INI_GRID_HEIGHT, cell_size)
 
     # Main loop
-    while True:
+    while nb_cycle<=0:
         nb_cycle += 1
         print(f"Cycle count: {nb_cycle}")
         my_grid.cycle()
@@ -52,5 +56,6 @@ def main():
         #             break
         #         cpt += 1
 
-
+    
+    
 main()
