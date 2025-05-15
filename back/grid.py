@@ -354,7 +354,7 @@ class Grid:
 
 
     def print_population(self) -> tuple[int, int]:
-        """ Method that returns this cycle's stats
+        """ Method to print this cycle's stats
 
         Returns:
             int: Number of fish alive at the end of this cycle
@@ -377,26 +377,29 @@ class Grid:
         return nb_fishes, nb_sharks        
 
     def move_boat(self) -> None:
+        """ 
+        Move each boat to the right by its size. 
+        If a boat passes over a fish or a shark, the animal is removed (killed).
+        If a rock was under the boat, it is restored. Otherwise, the ocean tile becomes water.
+        """
         boat_size = cs.INI_BOAT_SIZE
-        new_list_boat = []  # Liste temporaire pour garder les bateaux encore valides
-        # Créer une nouvelle liste pour les bateaux à garder
-
+        new_list_boat = []  # Temporary list to store boats still inside the ocean bounds
         for boat in self.list_boat:
             old_x, old_y = boat.pos_x, boat.pos_y
 
-            # Vérifie si on doit restaurer un rocher
+            # Restore the previous boat position: rock or water
             if (old_x, old_y) in self.rock_positions:
                 self.ocean[old_y][old_x] = "🪨"
             else:
                 self.ocean[old_y][old_x] = "💧"
             
-            # Avancer le bateau
+            # Move the boat to the right if within bounds
             if boat.pos_x + boat_size < self.width:
                 boat.pos_x += boat_size
                 self.ocean[boat.pos_y][boat.pos_x] = "⛴️"
                 new_list_boat.append(boat)
 
-            # Supprime l'animal à la position du bateau s'il y en a un
+            # Remove any animal at the new boat position
             for indice_animal in range(0,len(self.list_population)):
                 if boat.pos_x == self.list_population[indice_animal].pos_x and boat.pos_y == self.list_population[indice_animal].pos_y:
                     del self.list_population[indice_animal]
@@ -406,14 +409,18 @@ class Grid:
 
 
     def add_boat(self) -> None:
+        """
+        Add a new boat at the left edge of the ocean (x=0) at a random vertical position.
+        If the boat overlaps with animals, they are removed (killed).
+        """
         boat_size = cs.INI_BOAT_SIZE
         x = 0
         y = random.randint(0, self.height-1-boat_size)
         for i in range(0,boat_size):
             for j in range(0,boat_size):
-                # Populating the ocean with a boat
                 self.ocean[y+i][x+j] = "⛴️"
                 new_boat = Boat(x+j, y+i)
+                # Remove any animal at the boat's position
                 for indice_animal in range(0,len(self.list_population)):
                     if new_boat.pos_x == self.list_population[indice_animal].pos_x and new_boat.pos_y == self.list_population[indice_animal].pos_y:
                         del self.list_population[indice_animal]
