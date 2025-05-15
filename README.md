@@ -116,7 +116,10 @@ The simulation behavior can be customized via the `config/config.ini` file. You 
 
 ### 🕹️ Game Settings
 - **`auto_play`**  
-  If False, the simulation works one cycle at a time (True | False) 
+  If False, the simulation works one cycle at a time (True | False)
+- **`show_in_terminal`**  
+  If True, the simulation is also displayed in the terminal (True | False)
+
 
 ## 🧪 How to Run
 
