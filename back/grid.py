@@ -349,8 +349,7 @@ class Grid:
         self.list_population = self.list_next_cycle_population
         self.list_next_cycle_population = []
         self.move_boat()
-        random_number = random.randint(0,25)
-        if random_number == 10:
+        if random.random() < 1/cs.INI_BOAT_FREQUENCY:
             self.add_boat()
 
 
@@ -380,6 +379,7 @@ class Grid:
         
 
     def move_boat(self) -> None:
+        boat_size = cs.INI_BOAT_SIZE
         new_list_boat = []  # Liste temporaire pour garder les bateaux encore valides
         # Créer une nouvelle liste pour les bateaux à garder
 
@@ -395,8 +395,8 @@ class Grid:
 
 
             # Avancer le bateau
-            if boat.pos_x + 10 < self.width:
-                boat.pos_x += 10
+            if boat.pos_x + boat_size < self.width:
+                boat.pos_x += boat_size
                 self.ocean[boat.pos_y][boat.pos_x] = "⛴️"
                 new_list_boat.append(boat)
 
@@ -410,10 +410,11 @@ class Grid:
 
 
     def add_boat(self) -> None:
+        boat_size = cs.INI_BOAT_SIZE
         x = 0
-        y = random.randint(0, self.height-11)
-        for i in range(0,10):
-            for j in range(0,10):
+        y = random.randint(0, self.height-1-boat_size)
+        for i in range(0,boat_size):
+            for j in range(0,boat_size):
                 # Populating the ocean with a boat
                 self.ocean[y+i][x+j] = "⛴️"
                 new_boat = Boat(x+j, y+i)
