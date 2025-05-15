@@ -67,7 +67,7 @@ Here’s a glimpse of the simulation in action:
 
 ![Simulation demo](images/wa-tor_stats.gif)
 
-![Simulation demo](wa-tor_fishing_trawler.gif)
+![Simulation demo](images/wa-tor_fishing_trawler.gif)
   
   
 ## 🚀 Getting Started  
