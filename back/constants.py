@@ -14,8 +14,7 @@ INI_SHARK_STARTING_ENERGY = 10
 INI_SHARK_TIME_TO_REPRODUCE = 5
 INI_SHARK_EATING_REGEN = 3
 INI_ROCK_STARTING_POPULATION = 3
-INI_AUTO_PLAY = False
-
+INI_AUTO_PLAY = True
 
 
 def read_config(fic) -> ConfigParser|bool:
@@ -54,4 +53,4 @@ if ini_parser:
 
     INI_ROCK_STARTING_POPULATION = int(ini_parser.get('rock','starting_population'))
 
-    INI_AUTO_PLAY = bool(ini_parser.get('game','auto_play'))
+    # INI_AUTO_PLAY = bool(ini_parser.get('game','auto_play'))
