@@ -45,6 +45,7 @@ wa-tor-project/
 │   └── config.ini
 │
 ├── images/
+│   └── wa-tor_fishing_trawler.gif
 │   └── wa-tor_stats.gif
 │   └── wa-tor.gif
 │   └── wa-tor.png
@@ -65,6 +66,8 @@ Here’s a glimpse of the simulation in action:
 ![Simulation demo](images/wa-tor.gif)
 
 ![Simulation demo](images/wa-tor_stats.gif)
+
+![Simulation demo](wa-tor_fishing_trawler.gif)
   
   
 ## 🚀 Getting Started  
