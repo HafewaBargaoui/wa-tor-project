@@ -26,7 +26,7 @@ The **Wa-Tor Simulation** is a simplified predator-prey ecosystem model represen
   
 -   🎮 pygame  
 
--   📊 matplotlib 
+-   📊 matplotlib & Seaborn
 
 ## 📁Project Structure  
   
@@ -37,7 +37,7 @@ wa-tor-project/
 │   ├── display.py
 │   ├── fish.py
 │   ├── grid.py
-│   ├──  main.py
+│   ├── main.py
 │   ├── shark.py
 │   └── stats.py
 │
@@ -105,8 +105,18 @@ The simulation behavior can be customized via the `config/config.ini` file. You 
   Amount of energy regained each time a shark eats a fish.
 
 ### 🪨 Rock Settings
-- **`starting_population`** 
+- **`starting_population`**  
   Number of rocks initially placed on the grid.
+
+### ⛴️ Boat Settings
+- **`size`**  
+  Number of tiles of a side of the square
+- **`frequency`**  
+  Probability to spawn a boat (1/frequency)
+
+### 🕹️ Game Settings
+- **`auto_play`**  
+  If False, the simulation works one cycle at a time (True | False) 
 
 ## 🧪 How to Run
 

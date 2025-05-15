@@ -28,10 +28,10 @@ def main():
     # Main loop
     while True:
         # Auto mode / one cycle at a time mode
-        if cs.INI_AUTO_PLAY == "True":
+        if cs.INI_AUTO_PLAY.lower() == "true":
             key_input = "n"
         else:
-            key_input = input('Press "n" to play th next cycle. \nPress "c" to stop \n')
+            key_input = input('Press "n" to play the next cycle. \nPress "c" to stop \n')
 
         nb_cycle += 1
         if key_input.lower() == "c":

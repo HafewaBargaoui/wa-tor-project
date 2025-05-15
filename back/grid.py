@@ -370,14 +370,11 @@ class Grid:
                 nb_fishes += 1
 
         # Printing stats
-        print("")
-        print(f"🦈 count: {nb_sharks}")
-        print(f"🐠 count: {nb_fishes}")
+        # print("")
+        # print(f"🦈 count: {nb_sharks}")
+        # print(f"🐠 count: {nb_fishes}")
 
-        # Verifying if the simulation can be stopped
-        if nb_fishes == 0 or nb_sharks == 0:
-            return True
-        
+        return nb_fishes, nb_sharks        
 
     def move_boat(self) -> None:
         boat_size = cs.INI_BOAT_SIZE
@@ -393,8 +390,6 @@ class Grid:
             else:
                 self.ocean[old_y][old_x] = "💧"
             
-
-
             # Avancer le bateau
             if boat.pos_x + boat_size < self.width:
                 boat.pos_x += boat_size
@@ -425,8 +420,3 @@ class Grid:
                         break
                 self.list_boat.append(new_boat)
     
-        # print("")
-        # print(f"🦈 count: {nb_sharks}")
-        # print(f"🐠 count: {nb_fishes}")
-     
-        return nb_fishes, nb_sharks
