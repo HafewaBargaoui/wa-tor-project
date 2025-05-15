@@ -354,7 +354,7 @@ class Grid:
 
 
     def print_population(self) -> tuple[int, int]:
-        """ Method to print this cycle's stats
+        """ Method that returns this cycle's stats
 
         Returns:
             int: Number of fish alive at the end of this cycle
